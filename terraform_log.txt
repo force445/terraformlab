@@ -1,0 +1,220 @@
+2024-09-26T16:13:45.394+0700 [INFO]  Terraform version: 1.9.6
+2024-09-26T16:13:45.394+0700 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-09-26T16:13:45.394+0700 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-09-26T16:13:45.394+0700 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-09-26T16:13:45.394+0700 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-09-26T16:13:45.394+0700 [INFO]  Go runtime version: go1.22.7
+2024-09-26T16:13:45.394+0700 [INFO]  CLI args: []string{"terraform", "plan"}
+2024-09-26T16:13:45.394+0700 [DEBUG] Attempting to open CLI config file: /home/force/.terraformrc
+2024-09-26T16:13:45.394+0700 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-09-26T16:13:45.394+0700 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-09-26T16:13:45.394+0700 [DEBUG] ignoring non-existing provider search directory /home/force/.terraform.d/plugins
+2024-09-26T16:13:45.394+0700 [DEBUG] ignoring non-existing provider search directory /home/force/.local/share/terraform/plugins
+2024-09-26T16:13:45.394+0700 [DEBUG] ignoring non-existing provider search directory /usr/share/ubuntu/terraform/plugins
+2024-09-26T16:13:45.394+0700 [DEBUG] ignoring non-existing provider search directory /usr/share/gnome/terraform/plugins
+2024-09-26T16:13:45.394+0700 [DEBUG] ignoring non-existing provider search directory /usr/local/share/terraform/plugins
+2024-09-26T16:13:45.394+0700 [DEBUG] ignoring non-existing provider search directory /usr/share/terraform/plugins
+2024-09-26T16:13:45.394+0700 [DEBUG] ignoring non-existing provider search directory /var/lib/snapd/desktop/terraform/plugins
+2024-09-26T16:13:45.394+0700 [INFO]  CLI command args: []string{"plan"}
+2024-09-26T16:13:45.434+0700 [DEBUG] checking for provisioner in "."
+2024-09-26T16:13:45.439+0700 [DEBUG] checking for provisioner in "/usr/bin"
+2024-09-26T16:13:45.439+0700 [INFO]  backend/local: starting Plan operation
+2024-09-26T16:13:45.440+0700 [DEBUG] created provider logger: level=debug
+2024-09-26T16:13:45.440+0700 [INFO]  provider: configuring client automatic mTLS
+2024-09-26T16:13:45.450+0700 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/telmate/proxmox/3.0.1-rc4/linux_amd64/terraform-provider-proxmox_v3.0.1-rc4 args=[".terraform/providers/registry.terraform.io/telmate/proxmox/3.0.1-rc4/linux_amd64/terraform-provider-proxmox_v3.0.1-rc4"]
+2024-09-26T16:13:45.450+0700 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/telmate/proxmox/3.0.1-rc4/linux_amd64/terraform-provider-proxmox_v3.0.1-rc4 pid=409611
+2024-09-26T16:13:45.450+0700 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/telmate/proxmox/3.0.1-rc4/linux_amd64/terraform-provider-proxmox_v3.0.1-rc4
+2024-09-26T16:13:45.453+0700 [INFO]  provider.terraform-provider-proxmox_v3.0.1-rc4: configuring server automatic mTLS: timestamp="2024-09-26T16:13:45.453+0700"
+2024-09-26T16:13:45.465+0700 [DEBUG] provider: using plugin: version=5
+2024-09-26T16:13:45.465+0700 [DEBUG] provider.terraform-provider-proxmox_v3.0.1-rc4: plugin address: address=/tmp/plugin1888052801 network=unix timestamp="2024-09-26T16:13:45.465+0700"
+2024-09-26T16:13:45.482+0700 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-09-26T16:13:45.483+0700 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/telmate/proxmox/3.0.1-rc4/linux_amd64/terraform-provider-proxmox_v3.0.1-rc4 id=409611
+2024-09-26T16:13:45.487+0700 [DEBUG] provider: plugin exited
+2024-09-26T16:13:45.487+0700 [DEBUG] Building and walking validate graph
+2024-09-26T16:13:45.487+0700 [DEBUG] ProviderTransformer: "proxmox_vm_qemu.test_server" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/telmate/proxmox"]
+2024-09-26T16:13:45.487+0700 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/telmate/proxmox\"]" references: []
+2024-09-26T16:13:45.491+0700 [DEBUG] ReferenceTransformer: "proxmox_vm_qemu.test_server" references: [var.proxmox_host var.ssh_key var.template_name]
+2024-09-26T16:13:45.491+0700 [DEBUG] ReferenceTransformer: "var.vm_qemu_disk_backup" references: []
+2024-09-26T16:13:45.491+0700 [DEBUG] ReferenceTransformer: "var.ssh_key" references: []
+2024-09-26T16:13:45.491+0700 [DEBUG] ReferenceTransformer: "var.proxmox_host" references: []
+2024-09-26T16:13:45.491+0700 [DEBUG] ReferenceTransformer: "var.template_name" references: []
+2024-09-26T16:13:45.491+0700 [DEBUG] Starting graph walk: walkValidate
+2024-09-26T16:13:45.492+0700 [DEBUG] created provider logger: level=debug
+2024-09-26T16:13:45.492+0700 [INFO]  provider: configuring client automatic mTLS
+2024-09-26T16:13:45.496+0700 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/telmate/proxmox/3.0.1-rc4/linux_amd64/terraform-provider-proxmox_v3.0.1-rc4 args=[".terraform/providers/registry.terraform.io/telmate/proxmox/3.0.1-rc4/linux_amd64/terraform-provider-proxmox_v3.0.1-rc4"]
+2024-09-26T16:13:45.496+0700 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/telmate/proxmox/3.0.1-rc4/linux_amd64/terraform-provider-proxmox_v3.0.1-rc4 pid=409629
+2024-09-26T16:13:45.496+0700 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/telmate/proxmox/3.0.1-rc4/linux_amd64/terraform-provider-proxmox_v3.0.1-rc4
+2024-09-26T16:13:45.499+0700 [INFO]  provider.terraform-provider-proxmox_v3.0.1-rc4: configuring server automatic mTLS: timestamp="2024-09-26T16:13:45.499+0700"
+2024-09-26T16:13:45.511+0700 [DEBUG] provider: using plugin: version=5
+2024-09-26T16:13:45.511+0700 [DEBUG] provider.terraform-provider-proxmox_v3.0.1-rc4: plugin address: address=/tmp/plugin1644942324 network=unix timestamp="2024-09-26T16:13:45.511+0700"
+2024-09-26T16:13:45.526+0700 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-09-26T16:13:45.527+0700 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/telmate/proxmox/3.0.1-rc4/linux_amd64/terraform-provider-proxmox_v3.0.1-rc4 id=409629
+2024-09-26T16:13:45.531+0700 [DEBUG] provider: plugin exited
+2024-09-26T16:13:45.531+0700 [INFO]  backend/local: plan calling Plan
+2024-09-26T16:13:45.531+0700 [DEBUG] Building and walking plan graph for NormalMode
+2024-09-26T16:13:45.531+0700 [DEBUG] ProviderTransformer: "proxmox_vm_qemu.test_server (expand)" (*terraform.nodeExpandPlannableResource) needs provider["registry.terraform.io/telmate/proxmox"]
+2024-09-26T16:13:45.532+0700 [DEBUG] ReferenceTransformer: "proxmox_vm_qemu.test_server (expand)" references: [var.proxmox_host var.ssh_key var.template_name]
+2024-09-26T16:13:45.532+0700 [DEBUG] ReferenceTransformer: "var.ssh_key" references: []
+2024-09-26T16:13:45.532+0700 [DEBUG] ReferenceTransformer: "var.proxmox_host" references: []
+2024-09-26T16:13:45.532+0700 [DEBUG] ReferenceTransformer: "var.template_name" references: []
+2024-09-26T16:13:45.532+0700 [DEBUG] ReferenceTransformer: "var.vm_qemu_disk_backup" references: []
+2024-09-26T16:13:45.532+0700 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/telmate/proxmox\"]" references: []
+2024-09-26T16:13:45.532+0700 [DEBUG] Starting graph walk: walkPlan
+2024-09-26T16:13:45.532+0700 [DEBUG] created provider logger: level=debug
+2024-09-26T16:13:45.532+0700 [INFO]  provider: configuring client automatic mTLS
+2024-09-26T16:13:45.536+0700 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/telmate/proxmox/3.0.1-rc4/linux_amd64/terraform-provider-proxmox_v3.0.1-rc4 args=[".terraform/providers/registry.terraform.io/telmate/proxmox/3.0.1-rc4/linux_amd64/terraform-provider-proxmox_v3.0.1-rc4"]
+2024-09-26T16:13:45.537+0700 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/telmate/proxmox/3.0.1-rc4/linux_amd64/terraform-provider-proxmox_v3.0.1-rc4 pid=409646
+2024-09-26T16:13:45.537+0700 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/telmate/proxmox/3.0.1-rc4/linux_amd64/terraform-provider-proxmox_v3.0.1-rc4
+2024-09-26T16:13:45.541+0700 [INFO]  provider.terraform-provider-proxmox_v3.0.1-rc4: configuring server automatic mTLS: timestamp="2024-09-26T16:13:45.540+0700"
+2024-09-26T16:13:45.556+0700 [DEBUG] provider: using plugin: version=5
+2024-09-26T16:13:45.556+0700 [DEBUG] provider.terraform-provider-proxmox_v3.0.1-rc4: plugin address: address=/tmp/plugin3174663199 network=unix timestamp="2024-09-26T16:13:45.556+0700"
+2024-09-26T16:13:45.569+0700 [WARN]  ValidateProviderConfig from "provider[\"registry.terraform.io/telmate/proxmox\"]" changed the config value, but that value is unused
+2024-09-26T16:13:45.581+0700 [DEBUG] Resource instance state not found for node "proxmox_vm_qemu.test_server[0]", instance proxmox_vm_qemu.test_server[0]
+2024-09-26T16:13:45.581+0700 [DEBUG] ReferenceTransformer: "proxmox_vm_qemu.test_server[0]" references: []
+2024-09-26T16:13:45.582+0700 [DEBUG] refresh: proxmox_vm_qemu.test_server[0]: no state, so not refreshing
+2024-09-26T16:13:45.713+0700 [WARN]  Provider "registry.terraform.io/telmate/proxmox" produced an invalid plan for proxmox_vm_qemu.test_server[0], but we are tolerating it because it is using the legacy plugin SDK.
+    The following problems may be the cause of any confusing errors from downstream operations:
+      - .cpu: planned value cty.StringVal("host") for a non-computed attribute
+      - .define_connection_info: planned value cty.True for a non-computed attribute
+      - .tablet: planned value cty.True for a non-computed attribute
+      - .vcpus: planned value cty.NumberIntVal(0) for a non-computed attribute
+      - .clone_wait: planned value cty.NumberIntVal(10) for a non-computed attribute
+      - .force_create: planned value cty.False for a non-computed attribute
+      - .onboot: planned value cty.False for a non-computed attribute
+      - .skip_ipv4: planned value cty.False for a non-computed attribute
+      - .vm_state: planned value cty.StringVal("running") for a non-computed attribute
+      - .bios: planned value cty.StringVal("seabios") for a non-computed attribute
+      - .ciupgrade: planned value cty.False for a non-computed attribute
+      - .full_clone: planned value cty.True for a non-computed attribute
+      - .kvm: planned value cty.True for a non-computed attribute
+      - .skip_ipv6: planned value cty.False for a non-computed attribute
+      - .balloon: planned value cty.NumberIntVal(0) for a non-computed attribute
+      - .protection: planned value cty.False for a non-computed attribute
+      - .automatic_reboot: planned value cty.True for a non-computed attribute
+      - .hotplug: planned value cty.StringVal("network,disk,usb") for a non-computed attribute
+      - .additional_wait: planned value cty.NumberIntVal(5) for a non-computed attribute
+      - .disk[0].format: planned value cty.StringVal("raw") for a non-computed attribute
+      - .disk[0].iops_r_burst: planned value cty.NumberIntVal(0) for a non-computed attribute
+      - .disk[0].mbps_wr_burst: planned value cty.NumberIntVal(0) for a non-computed attribute
+      - .disk[0].iops_wr_concurrent: planned value cty.NumberIntVal(0) for a non-computed attribute
+      - .disk[0].mbps_wr_concurrent: planned value cty.NumberIntVal(0) for a non-computed attribute
+      - .disk[0].passthrough: planned value cty.False for a non-computed attribute
+      - .disk[0].iops_wr_burst: planned value cty.NumberIntVal(0) for a non-computed attribute
+      - .disk[0].iops_r_concurrent: planned value cty.NumberIntVal(0) for a non-computed attribute
+      - .disk[0].iops_wr_burst_length: planned value cty.NumberIntVal(0) for a non-computed attribute
+      - .disk[0].mbps_r_burst: planned value cty.NumberIntVal(0) for a non-computed attribute
+      - .disk[0].mbps_r_concurrent: planned value cty.NumberIntVal(0) for a non-computed attribute
+      - .disk[0].iops_r_burst_length: planned value cty.NumberIntVal(0) for a non-computed attribute
+      - .network[0].tag: planned value cty.NumberIntVal(-1) for a non-computed attribute
+      - .smbios: attribute representing nested block must not be unknown itself; set nested attribute values to unknown instead
+2024-09-26T16:13:45.719+0700 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-09-26T16:13:45.720+0700 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/telmate/proxmox/3.0.1-rc4/linux_amd64/terraform-provider-proxmox_v3.0.1-rc4 id=409646
+2024-09-26T16:13:45.724+0700 [DEBUG] provider: plugin exited
+2024-09-26T16:13:45.725+0700 [DEBUG] building apply graph to check for errors
+2024-09-26T16:13:45.725+0700 [DEBUG] Resource state not found for node "proxmox_vm_qemu.test_server[0]", instance proxmox_vm_qemu.test_server[0]
+2024-09-26T16:13:45.726+0700 [DEBUG] ProviderTransformer: "proxmox_vm_qemu.test_server[0]" (*terraform.NodeApplyableResourceInstance) needs provider["registry.terraform.io/telmate/proxmox"]
+2024-09-26T16:13:45.726+0700 [DEBUG] ProviderTransformer: "proxmox_vm_qemu.test_server (expand)" (*terraform.nodeExpandApplyableResource) needs provider["registry.terraform.io/telmate/proxmox"]
+2024-09-26T16:13:45.726+0700 [DEBUG] ReferenceTransformer: "var.ssh_key" references: []
+2024-09-26T16:13:45.726+0700 [DEBUG] ReferenceTransformer: "var.proxmox_host" references: []
+2024-09-26T16:13:45.726+0700 [DEBUG] ReferenceTransformer: "var.template_name" references: []
+2024-09-26T16:13:45.726+0700 [DEBUG] ReferenceTransformer: "var.vm_qemu_disk_backup" references: []
+2024-09-26T16:13:45.727+0700 [DEBUG] ReferenceTransformer: "proxmox_vm_qemu.test_server[0]" references: [var.ssh_key var.proxmox_host var.template_name]
+2024-09-26T16:13:45.727+0700 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/telmate/proxmox\"]" references: []
+2024-09-26T16:13:45.727+0700 [DEBUG] ReferenceTransformer: "proxmox_vm_qemu.test_server (expand)" references: [var.template_name var.proxmox_host var.ssh_key]
+2024-09-26T16:13:45.728+0700 [INFO]  backend/local: plan operation completed
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+
+Terraform will perform the following actions:
+
+[1m  # proxmox_vm_qemu.test_server[0][0m will be created
+[0m  [32m+[0m[0m resource "proxmox_vm_qemu" "test_server" {
+      [32m+[0m[0m additional_wait        = 5
+      [32m+[0m[0m agent                  = 1
+      [32m+[0m[0m automatic_reboot       = true
+      [32m+[0m[0m balloon                = 0
+      [32m+[0m[0m bios                   = "seabios"
+      [32m+[0m[0m boot                   = (known after apply)
+      [32m+[0m[0m bootdisk               = "scsi0"
+      [32m+[0m[0m ciupgrade              = false
+      [32m+[0m[0m clone                  = "ubuntu-base-template"
+      [32m+[0m[0m clone_wait             = 10
+      [32m+[0m[0m cores                  = 2
+      [32m+[0m[0m cpu                    = "host"
+      [32m+[0m[0m default_ipv4_address   = (known after apply)
+      [32m+[0m[0m default_ipv6_address   = (known after apply)
+      [32m+[0m[0m define_connection_info = true
+      [32m+[0m[0m force_create           = false
+      [32m+[0m[0m full_clone             = true
+      [32m+[0m[0m hotplug                = "network,disk,usb"
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ipconfig0              = "ip=dhcp"
+      [32m+[0m[0m kvm                    = true
+      [32m+[0m[0m linked_vmid            = (known after apply)
+      [32m+[0m[0m memory                 = 2048
+      [32m+[0m[0m name                   = "test-vm-1"
+      [32m+[0m[0m onboot                 = false
+      [32m+[0m[0m os_type                = "ubuntu"
+      [32m+[0m[0m protection             = false
+      [32m+[0m[0m reboot_required        = (known after apply)
+      [32m+[0m[0m scsihw                 = "virtio-scsi-pci"
+      [32m+[0m[0m skip_ipv4              = false
+      [32m+[0m[0m skip_ipv6              = false
+      [32m+[0m[0m sockets                = 1
+      [32m+[0m[0m ssh_host               = (known after apply)
+      [32m+[0m[0m ssh_port               = (known after apply)
+      [32m+[0m[0m sshkeys                = <<-EOT
+            ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDbI7B6XaZo4MP9/Wg9XpQcfb/joiQsclhMuDFyR5cu5t7+CG2/qW6KYg89mn4FGJzEH+Wd5VIn2xh+9m7t+odckZB2K8GvTxoXDOQLGVn2T8T6IB4XzPfq5FZ8gSHXCe0R3jh9kV7WSZBW8WP7gAYX5w4m120K7SvT9/z0dL/+eucnn/WklZoV8tqfNP+s9yeyWmd7JY3oeQy53GfPOg+rc78/eyCH/5hCI4kbiYLHy0zMn+zyjLd6kFhTm7EyNHblJaPjdwSfCX//waedzIiABB6stByOpYaQ5GiP91hrnCdbCMhMd0EoJ9WE8vSdrH9tc5F84TFck4jhhbmVS6NRrbSdARQSTH/3ZfbHE5g9jdYIwkSA1K3H4ncDd/cjM5mGHYQBbM+f5uX98wW2bS+h9tDld+GE9btka7E4cNPkwDtsinmceqJIjhJuCsihrlLZzLHfyuxQtE9PF+4ZXMjw112nBqrsSviblJ3gLapUUg2YHeMSNEiABWEbhYh9q5U=
+        EOT
+      [32m+[0m[0m tablet                 = true
+      [32m+[0m[0m tags                   = (known after apply)
+      [32m+[0m[0m target_node            = "force"
+      [32m+[0m[0m unused_disk            = (known after apply)
+      [32m+[0m[0m vcpus                  = 0
+      [32m+[0m[0m vm_state               = "running"
+      [32m+[0m[0m vmid                   = (known after apply)
+
+      [32m+[0m[0m disk {
+          [32m+[0m[0m backup               = true
+          [32m+[0m[0m format               = "raw"
+          [32m+[0m[0m id                   = (known after apply)
+          [32m+[0m[0m iops_r_burst         = 0
+          [32m+[0m[0m iops_r_burst_length  = 0
+          [32m+[0m[0m iops_r_concurrent    = 0
+          [32m+[0m[0m iops_wr_burst        = 0
+          [32m+[0m[0m iops_wr_burst_length = 0
+          [32m+[0m[0m iops_wr_concurrent   = 0
+          [32m+[0m[0m linked_disk_id       = (known after apply)
+          [32m+[0m[0m mbps_r_burst         = 0
+          [32m+[0m[0m mbps_r_concurrent    = 0
+          [32m+[0m[0m mbps_wr_burst        = 0
+          [32m+[0m[0m mbps_wr_concurrent   = 0
+          [32m+[0m[0m passthrough          = false
+          [32m+[0m[0m size                 = "32G"
+          [32m+[0m[0m slot                 = "virtio0"
+          [32m+[0m[0m storage              = "local-lvm"
+          [32m+[0m[0m type                 = "disk"
+        }
+
+      [32m+[0m[0m network {
+          [32m+[0m[0m bridge    = "vmbr0"
+          [32m+[0m[0m firewall  = false
+          [32m+[0m[0m link_down = false
+          [32m+[0m[0m macaddr   = (known after apply)
+          [32m+[0m[0m model     = "virtio"
+          [32m+[0m[0m queues    = (known after apply)
+          [32m+[0m[0m rate      = (known after apply)
+          [32m+[0m[0m tag       = -1
+        }
+
+      [32m+[0m[0m smbios (known after apply)
+    }
+
+[1mPlan:[0m 1 to add, 0 to change, 0 to destroy.
+[0m[90m
+─────────────────────────────────────────────────────────────────────────────[0m
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.
