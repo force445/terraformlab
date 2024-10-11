@@ -10,6 +10,7 @@ terraform {
 provider "proxmox" {
   pm_api_url        = "https://192.168.122.200:8006/api2/json"
   pm_api_token_id   = "root@pam!token_id"
+  #production should use secret from vault
   pm_api_token_secret = "552f1b22-3eff-4046-8436-af5369f1d4c0"
   pm_tls_insecure   = true
   pm_debug = true
@@ -55,7 +56,7 @@ resource "proxmox_vm_qemu" "test_server" {
   sshkeys = <<EOF
 ${var.ssh_key}
 EOF
-
+  #this is a custom cloud-init file that will be used to configure the VM
   cicustom = "user=local:snippets/user_data_vm-${count.index}.yaml"
 }
   
