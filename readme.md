@@ -25,6 +25,11 @@ terraform {
   }
 }
 ```
+after we declare provider use the command to initialize the provider
+```bash
+terraform init
+```
+
 
 ## configure the proxmox provider
 ```hcl
@@ -171,3 +176,117 @@ Default Value: The default value is "ubuntu-base-template".
 
 in the main.tf use var keyword followed by the variable name
 ex. var.proxmox_host, var.template_name
+
+## cloud-config custom
+The cicustom parameter in the Proxmox VM resource configuration is used to specify a custom cloud-init configuration file for the VM. This allows you to provide additional configuration for the VM during its initialization.
+
+```hcl
+cicustom = "user=local:snippets/user_data_vm-${count.index}.yaml"
+```
+cicustom: This parameter specifies the path to a custom cloud-init configuration file.
+user=local:snippets/user_data_vm-${count.index}.yaml: This value indicates that the custom cloud-init file is located in the local Proxmox storage under the snippets directory. The ${count.index} is a placeholder that gets replaced with the current index of the VM being created (starting from 0). This allows you to use different cloud-init files for different VMs if you are creating multiple VMs.
+
+```yml
+#cloud-config
+users:
+  - name: ubuntu
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDbI7B6XaZo4MP9/Wg9XpQcfb/joiQsclhMuDFyR5cu5t7+CG2/qW6KYg89mn4FGJzEH+Wd5VIn2xh+9m7t+odckZB2K8GvTxoXDOQLGVn2T8T6IB4XzPfq5FZ8gSHXCe0R3jh9kV7WSZBW8WP7gAYX5w4m120K7SvT9/z0dL/+eucnn/WklZoV8tqfNP+s9yeyWmd7JY3oeQy53GfPOg+rc78/eyCH/5hCI4kbiYLHy0zMn+zyjLd6kFhTm7EyNHblJaPjdwSfCX//waedzIiABB6stByOpYaQ5GiP91hrnCdbCMhMd0EoJ9WE8vSdrH9tc5F84TFck4jhhbmVS6NRrbSdARQSTH/3ZfbHE5g9jdYIwkSA1K3H4ncDd/cjM5mGHYQBbM+f5uX98wW2bS+h9tDld+GE9btka7E4cNPkwDtsinmceqJIjhJuCsihrlLZzLHfyuxQtE9PF+4ZXMjw112nBqrsSviblJ3gLapUUg2YHeMSNEiABWEbhYh9q5U= force@force-GL65-9SEK
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    groups: sudo
+    shell: /bin/bash
+    lock_passwd: false
+    passwd: $6$Jf1PFzaroD4ZRKHH$uQv4vSA22RoSjGrXVKbxwpRURqCx.PLqUDSdtqm8eaRPfzh/udhgC1L/H6CSWaNmsqNOrWhLsWBX5/ImnujbQ0
+chpasswd:
+  list: |
+    ubuntu:Force4462
+  expire: False
+runcmd:
+  - apt-get update
+  - apt-get install -y unattended-upgrades
+  - dpkg-reconfigure -plow unattended-upgrades
+  - ufw allow OpenSSH
+  - ufw allow 80/tcp
+  - ufw allow 443/tcp
+```
+#cloud-config: Indicates that this file is a cloud-init configuration file.
+users: Defines the users to be created on the VM.
+name: The username (ubuntu).
+ssh-authorized-keys: The SSH public key to be added to the user's ~/.ssh/authorized_keys file.
+sudo: Grants the user passwordless sudo access.
+groups: Adds the user to the sudo group.
+shell: Specifies the user's default shell (/bin/bash).
+lock_passwd: Indicates whether the user's password should be locked (false means the password is not locked).
+passwd: The hashed password for the user.
+chpasswd: Sets the password for the user.
+list: Specifies the username and password in plain text (ubuntu:Force4462).
+expire: Indicates whether the password should expire (False means it does not expire).
+runcmd: A list of commands to run during the first boot.
+apt-get update: Updates the package list.
+apt-get install -y unattended-upgrades: Installs the unattended-upgrades package.
+dpkg-reconfigure -plow unattended-upgrades: Configures the unattended-upgrades package.
+ufw allow OpenSSH: Allows SSH traffic through the firewall.
+ufw allow 80/tcp: Allows HTTP traffic through the firewall.
+ufw allow 443/tcp: Allows HTTPS traffic through the firewall.
+
+## add the cloud-config to proxmox
+1. Access Proxmox Server
+```bash
+ssh root@<proxmox-server-ip>
+```
+2. Navigate to the Snippets Directory
+```bash
+cd /var/lib/vz/snippets
+```
+3. Upload the Cloud-Init file
+```bash
+scp user_data_vm-0.yaml root@<proxmox-server-ip>:/var/lib/vz/snippets/
+```
+4. Verify the file is in the correct location
+```bash
+ls -l /var/lib/vz/snippets
+```
+## run the terraform
+If plan for the first time use
+```bash
+terraform plan 
+```
+and then if there is changed happend to replace the old plan with the new plan otherwise the terraform will use the old plan eventhough you already use terraform plan
+```bash
+terraform plan -replace=main.tf
+```
+after this command the terraform will show every parameter if everything is correct use the command
+```bash
+terraform apply
+```
+after apply if everything is ok it would show on the terminal like this
+```bash
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+proxmox_vm_qemu.test_server[0]: Modifying... [id=force/qemu/101]
+proxmox_vm_qemu.test_server[0]: Modifications complete after 2s [id=force/qemu/101]
+╷
+│ Warning: slot: ide2 size is ignored when type = cloudinit
+│ 
+│   with proxmox_vm_qemu.test_server[0],
+│   on main.tf line 19, in resource "proxmox_vm_qemu" "test_server":
+│   19: resource "proxmox_vm_qemu" "test_server" {
+│ 
+╵
+╷
+│ Warning: Cloud-init is enabled but no IP config is set
+│ 
+│   with proxmox_vm_qemu.test_server[0],
+│   on main.tf line 19, in resource "proxmox_vm_qemu" "test_server":
+│   19: resource "proxmox_vm_qemu" "test_server" {
+│ 
+│ Cloud-init is enabled in your configuration but no static IP address is set,
+│ nor is the DHCP option enabled
+╵
+
+Apply complete! Resources: 0 added, 1 changed, 0 destroyed.
+```
