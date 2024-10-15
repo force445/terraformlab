@@ -26,7 +26,7 @@ terraform {
 }
 ```
 
-# configure the proxmox provider
+## configure the proxmox provider
 ```hcl
 provider "proxmox" {
     pm_api_url = "https://proxmox.example.com:8006/api2/json"
@@ -46,7 +46,7 @@ pm_api_token_secret: The API token secret for authentication. (Note: In producti
 pm_tls_insecure: A boolean indicating whether to skip TLS verification.
 pm_debug: A boolean indicating whether to enable debug mode.
 
-# create a new VM resource configuration
+## create a new VM resource configuration
 ```hcl
 resource "proxmox_vm_qemu" "test_server" {
   count        = 1 
@@ -74,7 +74,7 @@ memory: The amount of memory (in MB) for the VM.
 scsihw: The SCSI controller type.
 bootdisk: The boot disk slot.
 
-# Disk Configuration
+## Disk Configuration
 ```hcl
   disk {
     slot         = "scsi0"
@@ -93,7 +93,7 @@ storage: The storage location.
 backup: A boolean indicating whether the disk should be included in backups.
 iothread: A boolean indicating whether to enable IO threads.
 
-# Cloud-init Disk Configuration
+## Cloud-init Disk Configuration
 ```hcl
   disk {
     slot         = "ide2"
@@ -106,7 +106,7 @@ slot: The disk slot.
 type: The type of the disk.
 storage: The storage location.
 
-# Vm network configuration
+## Vm network configuration
 ```hcl
   network {
     model     = "virtio"
@@ -125,7 +125,7 @@ link_down: A boolean indicating whether the network link should be down initiall
 bridge: Specifies the bridge to which the network interface is connected. In this case, vmbr0 is used, which is a common bridge interface in Proxmox.
 ipconfig0 = "dhcp": This line configures the IP address for the first network interface (ipconfig0) to be assigned via DHCP.
 
-# SSH Keys and Cloud-Init Customization
+## SSH Keys and Cloud-Init Customization
 ```hcl
   sshkeys = <<EOF
 ${var.ssh_key}
