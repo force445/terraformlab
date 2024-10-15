@@ -46,9 +46,13 @@ provider "proxmox" {
 ```
 provider "proxmox" { ... }: This block configures the proxmox provider with the following variables:
 pm_api_url: The URL of the Proxmox API.
+
 pm_api_token_id: The API token ID for authentication.
+
 pm_api_token_secret: The API token secret for authentication. (Note: In production, this should be retrieved from a secure source like Vault.)
+
 pm_tls_insecure: A boolean indicating whether to skip TLS verification.
+
 pm_debug: A boolean indicating whether to enable debug mode.
 
 ## create a new VM resource configuration
@@ -68,15 +72,25 @@ resource "proxmox_vm_qemu" "test_server" {
 ```
 resource "proxmox_vm_qemu" "test_server" { ... }: This block defines a Proxmox VM resource with the following variables:
 count: The number of VMs to create.
+
 name: The name of the VM, which includes the count index.
+
 target_node: The Proxmox node where the VM will be created (defined as a variable proxmox_host).
+
 clone: The template to clone for the VM (defined as a variable template_name).
+
 agent: Enables the QEMU guest agent.
+
 os_type: Specifies the OS type, in this case, cloudinit.
+
 cores: The number of CPU cores for the VM.
+
 sockets: The number of CPU sockets for the VM.
+
 memory: The amount of memory (in MB) for the VM.
+
 scsihw: The SCSI controller type.
+
 bootdisk: The boot disk slot.
 
 ## Disk Configuration
@@ -92,10 +106,15 @@ bootdisk: The boot disk slot.
 ```
 disk { ... }: This block defines a disk for the VM with the following variables:
 slot: The disk slot.
+
 size: The size of the disk.
+
 type: The type of the disk.
+
 storage: The storage location.
+
 backup: A boolean indicating whether the disk should be included in backups.
+
 iothread: A boolean indicating whether to enable IO threads.
 
 ## Cloud-init Disk Configuration
@@ -107,8 +126,11 @@ iothread: A boolean indicating whether to enable IO threads.
   }
 ```
 disk { ... }: This block defines a cloud-init disk for the VM with the following variables:
+
 slot: The disk slot.
+
 type: The type of the disk.
+
 storage: The storage location.
 
 ## Vm network configuration
@@ -125,9 +147,13 @@ storage: The storage location.
 network { ... }: This block defines the network interface for the VM with the following variables:
 
 model: Specifies the network interface model. In this case, virtio is used, which is a paravirtualized network driver that provides better performance.
+
 firewall: A boolean indicating whether to enable the firewall for this network interface. Setting this to true enables the firewall.
+
 link_down: A boolean indicating whether the network link should be down initially. Setting this to false ensures that the network link is up.
+
 bridge: Specifies the bridge to which the network interface is connected. In this case, vmbr0 is used, which is a common bridge interface in Proxmox.
+
 ipconfig0 = "dhcp": This line configures the IP address for the first network interface (ipconfig0) to be assigned via DHCP.
 
 ## SSH Keys and Cloud-Init Customization
@@ -184,6 +210,7 @@ The cicustom parameter in the Proxmox VM resource configuration is used to speci
 cicustom = "user=local:snippets/user_data_vm-${count.index}.yaml"
 ```
 cicustom: This parameter specifies the path to a custom cloud-init configuration file.
+
 user=local:snippets/user_data_vm-${count.index}.yaml: This value indicates that the custom cloud-init file is located in the local Proxmox storage under the snippets directory. The ${count.index} is a placeholder that gets replaced with the current index of the VM being created (starting from 0). This allows you to use different cloud-init files for different VMs if you are creating multiple VMs.
 
 ```yml
@@ -210,23 +237,39 @@ runcmd:
   - ufw allow 443/tcp
 ```
 #cloud-config: Indicates that this file is a cloud-init configuration file.
-users: Defines the users to be created on the VM.
+
+users: Defines the users to be created on the VM. 
+
 name: The username (ubuntu).
-ssh-authorized-keys: The SSH public key to be added to the user's ~/.ssh/authorized_keys file.
-sudo: Grants the user passwordless sudo access.
-groups: Adds the user to the sudo group.
+ssh-authorized-keys: The SSH public key to be added to the user's ~/.ssh/authorized_keys file. 
+
+sudo: Grants the user passwordless sudo access. 
+
+groups: Adds the user to the sudo group.    
+
 shell: Specifies the user's default shell (/bin/bash).
-lock_passwd: Indicates whether the user's password should be locked (false means the password is not locked).
-passwd: The hashed password for the user.
-chpasswd: Sets the password for the user.
-list: Specifies the username and password in plain text (ubuntu:Force4462).
-expire: Indicates whether the password should expire (False means it does not expire).
+lock_passwd: Indicates whether the user's password should be locked (false means the password is not locked). 
+
+passwd: The hashed password for the user. 
+
+chpasswd: Sets the password for the user. 
+
+list: Specifies the username and password in plain text (ubuntu:Force4462). 
+
+expire: Indicates whether the password should expire (False means it does not expire). 
+
 runcmd: A list of commands to run during the first boot.
+
 apt-get update: Updates the package list.
+
 apt-get install -y unattended-upgrades: Installs the unattended-upgrades package.
+
 dpkg-reconfigure -plow unattended-upgrades: Configures the unattended-upgrades package.
+
 ufw allow OpenSSH: Allows SSH traffic through the firewall.
+
 ufw allow 80/tcp: Allows HTTP traffic through the firewall.
+
 ufw allow 443/tcp: Allows HTTPS traffic through the firewall.
 
 ## add the cloud-config to proxmox
