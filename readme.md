@@ -251,7 +251,7 @@ If plan for the first time use
 ```bash
 terraform plan 
 ```
-and then if there is changed happend to replace the old plan with the new plan otherwise the terraform will use the old plan eventhough you already use terraform plan
+and then if there is changed happend you must replace the old plan with the new plan otherwise the terraform will use the old plan eventhough you already use terraform plan
 ```bash
 terraform plan -replace=main.tf
 ```
