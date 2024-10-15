@@ -137,3 +137,37 @@ EOF
 sshkeys: This block defines the SSH keys to be injected into the VM. The <<EOF syntax is used to include a multi-line string, which in this case is the SSH key defined in the variable var.ssh_key.
 
 cicustom: This line specifies a custom cloud-init file to be used for configuring the VM. The cicustom parameter points to a file in the local Proxmox storage (local:snippets/user_data_vm-${count.index}.yaml), which contains additional configuration for the VM.
+
+## var.tf
+
+create var.tf for define input variables. Input variables serve as parameters for your Terraform configuration, allowing you to customize and reuse your configuration with different values without modifying the code itself.
+
+```hcl
+variable "ssh_key" {
+  default = <<-EOF
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDbI7B6XaZo4MP9/Wg9XpQcfb/joiQsclhMuDFyR5cu5t7+CG2/qW6KYg89mn4FGJzEH+Wd5VIn2xh+9m7t+odckZB2K8GvTxoXDOQLGVn2T8T6IB4XzPfq5FZ8gSHXCe0R3jh9kV7WSZBW8WP7gAYX5w4m120K7SvT9/z0dL/+eucnn/WklZoV8tqfNP+s9yeyWmd7JY3oeQy53GfPOg+rc78/eyCH/5hCI4kbiYLHy0zMn+zyjLd6kFhTm7EyNHblJaPjdwSfCX//waedzIiABB6stByOpYaQ5GiP91hrnCdbCMhMd0EoJ9WE8vSdrH9tc5F84TFck4jhhbmVS6NRrbSdARQSTH/3ZfbHE5g9jdYIwkSA1K3H4ncDd/cjM5mGHYQBbM+f5uX98wW2bS+h9tDld+GE9btka7E4cNPkwDtsinmceqJIjhJuCsihrlLZzLHfyuxQtE9PF+4ZXMjw112nBqrsSviblJ3gLapUUg2YHeMSNEiABWEbhYh9q5U=
+EOF
+}
+
+variable "proxmox_host" {
+    default = "force"
+}
+
+variable "template_name" {
+    default = "ubuntu-base-template"
+}
+```
+variable "ssh_key":
+Purpose: This variable holds the SSH public key that will be injected into the VM for SSH access.
+Default Value: The default value is a multi-line string containing an SSH public key. The <<-EOF syntax is used to include the multi-line string.
+
+variable "proxmox_host":
+Purpose: This variable specifies the Proxmox node where the VM will be created.
+Default Value: The default value is "force".
+
+variable "template_name":
+Purpose: This variable specifies the name of the template to clone for the VM.
+Default Value: The default value is "ubuntu-base-template".
+
+in the main.tf use var keyword followed by the variable name
+ex. var.proxmox_host, var.template_name
