@@ -5,9 +5,29 @@ EOF
 }
 
 variable "proxmox_host" {
-    default = "force"
+    default = "proxmox1"
 }
 
 variable "template_name" {
-    default = "ubuntu-base-template"
+    default = "ubuntu-cloud-test"
+}
+
+variable "control_plane_count" {
+  description = "Number of control plane nodes"
+  default     = 2
+}
+
+variable "worker_node_count" {
+  description = "Number of worker nodes"
+  default     = 3
+}
+
+variable "storage_control_plane" {
+  description =  "Name of control plane's storage"
+  default     =  "data"
+}
+
+variable "storage_worker" {
+  description = "Name of worker's storage"
+  default     = "disk-f"
 }
